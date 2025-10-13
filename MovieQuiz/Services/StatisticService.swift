@@ -77,8 +77,7 @@ extension StatisticService: StatisticServiceProtocol {
         gamesCount += 1
         
         let newResult = GameResult(correct: count, total: amount, date: Date())
-        if bestGame.correct < newResult.correct {
-            // Если новый результат лучше текущего лучшего результата, сохраняем его
+        if newResult.isBetterThan(bestGame) {
             bestGame = newResult
         }
     }
