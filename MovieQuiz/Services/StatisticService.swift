@@ -30,7 +30,6 @@ extension StatisticService: StatisticServiceProtocol {
             if let date = storage.object(forKey: Keys.bestGameDate.rawValue) as? Date {
                 return GameResult(correct: correct, total: total, date: date)
             } else {
-                // Если значение даты ещё не было сохранено, используем текущую дату
                 return GameResult(correct: correct, total: total, date: Date())
             }
         }
