@@ -1,7 +1,7 @@
 
 import XCTest
 
-class MovieQuizUITests: XCTestCase {
+final class MovieQuizUITests: XCTestCase {
     // swiftlint:disable:next implicitly_unwrapped_optional
     var app: XCUIApplication!
     

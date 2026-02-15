@@ -2,7 +2,7 @@ import Foundation
 import XCTest // не забывайте импортировать фреймворк для тестирования
 @testable import MovieQuiz // импортируем наше приложение для тестирования
 
-class ArrayTests: XCTestCase {
+final class ArrayTests: XCTestCase {
     func testGetValueInRange() throws { // тест на успешное взятие элемента по индексу
         // Given
         let array = [1, 1, 2, 3, 5]

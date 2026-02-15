@@ -2,7 +2,7 @@ import UIKit
 
 final class MovieQuizPresenter: QuestionFactoryDelegate {
     
-    let questionsAmount: Int = 10
+    private let questionsAmount: Int = 10
     private var currentQuestionIndex: Int = 0
     var correctAnswers: Int = 0
     var currentQuestion: QuizQuestion?

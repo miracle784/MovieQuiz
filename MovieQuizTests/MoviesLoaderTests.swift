@@ -2,7 +2,7 @@ import Foundation
 import XCTest // не забывайте импортировать фреймворк для тестирования
 @testable import MovieQuiz // импортируем приложение для тестирования
 
-class MoviesLoaderTests: XCTestCase {
+final class MoviesLoaderTests: XCTestCase {
     func testSuccessLoading() throws {
             // Given
             let stubNetworkClient = StubNetworkClient(emulateError: false) // говорим, что не хотим эмулировать ошибку
@@ -41,7 +41,7 @@ class MoviesLoaderTests: XCTestCase {
             case .failure(let error):
                 XCTAssertNotNil(error)
                 expectation.fulfill()
-            case .success(_):
+            case .success:
                 XCTFail("Unexpected failure")
             }
         }
