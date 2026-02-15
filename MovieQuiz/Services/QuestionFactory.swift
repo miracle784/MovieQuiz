@@ -18,7 +18,7 @@ final class QuestionFactory: QuestionFactoryProtocol {
                 guard let self = self else { return }
                 switch result {
                 case .success(let mostPopularMovies):
-                    self.movies = mostPopularMovies.items 
+                    self.movies = mostPopularMovies.items
                     self.delegate?.didLoadDataFromServer()
                 case .failure(let error):
                     self.delegate?.didFailToLoadData(with: error)
@@ -35,8 +35,8 @@ final class QuestionFactory: QuestionFactoryProtocol {
             guard let movie = self.movies[safe: index] else { return }
             
             var imageData = Data()
-           
-           do {
+            
+            do {
                 imageData = try Data(contentsOf: movie.resizedImageURL)
             } catch {
                 print("Failed to load image")
@@ -48,8 +48,8 @@ final class QuestionFactory: QuestionFactoryProtocol {
             let correctAnswer = rating > 8
             
             let question = QuizQuestion(image: imageData,
-                                         text: text,
-                                         correctAnswer: correctAnswer)
+                                        text: text,
+                                        correctAnswer: correctAnswer)
             
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }

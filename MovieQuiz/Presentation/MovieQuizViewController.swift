@@ -12,7 +12,7 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     @IBOutlet private weak var imageView: UIImageView!
     
     // MARK: - Properties and ViewModels
- 
+    
     private var alertPresenter = AlertPresenter()
     private var presenter: MovieQuizPresenter!
     
@@ -20,24 +20,24 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
         showLoadingIndicator()
         presenter = MovieQuizPresenter(viewController: self)
     }
-     
+    
     // MARK: - Actions
     
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
-        presenter.yesButtonClicked()
+        presenter.buttonClicked(true)
     }
- 
+    
     @IBAction private func noButtonClicked(_ sender: UIButton) {
-            presenter.noButtonClicked()
-        }
+        presenter.buttonClicked(false)
+    }
     
     // MARK: - Private Methods
     
-     func showNetworkError(message: String) {
+    func showNetworkError(message: String) {
         hideLoadingIndicator() 
         
         let model = AlertModel(
@@ -49,10 +49,10 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
                 self.presenter.restartGame()
                 
             }
-            alertPresenter.show(in: self, model: model)
+        alertPresenter.show(in: self, model: model)
     }
     
-     func showLoadingIndicator() {
+    func showLoadingIndicator() {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
     }
@@ -65,16 +65,16 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     func highlightImageBorder(isCorrectAnswer: Bool) {
         noButton.isEnabled = false
         yesButton.isEnabled = false
-            imageView.layer.masksToBounds = true
-            imageView.layer.borderWidth = 8
-            imageView.layer.borderColor = isCorrectAnswer ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
-        }
+        imageView.layer.masksToBounds = true
+        imageView.layer.borderWidth = 8
+        imageView.layer.borderColor = isCorrectAnswer ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
+    }
     
     func clearImageBorderAndEnableButtons() {
-            imageView.layer.borderWidth = 0
-            noButton.isEnabled = true
-            yesButton.isEnabled = true
-        }
+        imageView.layer.borderWidth = 0
+        noButton.isEnabled = true
+        yesButton.isEnabled = true
+    }
     
     func show(quiz step: QuizStepViewModel) {
         imageView.image = step.image
